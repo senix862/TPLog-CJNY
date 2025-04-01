@@ -76,7 +76,11 @@ consideradasAltas(Planta):-not(planta(Planta,tipo(flor))).
 % Realizar el predicado que nos permita agregar este conocimiento y el punto 1 no deba modificarse.
 
 % 3.Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
-
+cortasYtipoFlor(Planta):-
+    findall(Planta, 
+        (planta(Planta, altura(corta)), planta(Planta, tipo(flor))), 
+        Planta).
+cortasYtipoFlor(Planta):-planta(Planta, altura(corta)), planta(Planta,tipo(flor)).
 % 4.Ahora debemos agregar las pistas obtenidas durante las observaciones. Por ejemplo:
 
 % pista(arbol_rojo, tipo(arbusto)).
