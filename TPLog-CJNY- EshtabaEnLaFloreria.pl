@@ -86,6 +86,14 @@ cortasYtipoFlor(Planta):-planta(Planta, altura(corta)), planta(Planta,tipo(flor)
 
 pista(arbol_rojo, tipo(arbusto)).
 pista(arbol_rojo, altura(media)).
+pista(observacion1, tipo(flor)).
+pista(observacion2, color(blanco)).
+pista(observacion3, color(amarillo)).
+pista(observacion4, epoca(floracion,verano)).
+pista(observacion5, color(verdes)).
+pista(observacion6, epoca(floracion,primavera)).
+pista(observacion7, tipo(suculenta)).
+pista(observacion8, altura(alta)).
 
 
 cumplePistasDelObservador(Observacion, Planta):- 
