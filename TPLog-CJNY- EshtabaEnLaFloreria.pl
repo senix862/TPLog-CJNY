@@ -87,8 +87,21 @@ cortasYtipoFlor(Planta):-planta(Planta, altura(corta)), planta(Planta,tipo(flor)
 pista(arbol_rojo, tipo(arbusto)).
 pista(arbol_rojo, altura(media)).
 
-cumplePistasDelObservador(Observacion, Planta):- planta(Planta, _),
+
+cumplePistasDelObservador(Observacion, Planta):- 
     forall(pista(Observacion, Caracteristica), planta(Planta, Caracteristica)).
 
 
-% 5.Finalmente, queremos saber si una planta está atrayendo más visitas que su compañera. Para ello, la cantidad de pistas que cumple debe ser mayor que la de las plantas compañeras.
+% 5.Finalmente, queremos saber si una planta está atrayendo más visitas que su compañera. Para ello, la cantidad de pistas que cumple
+% debe ser mayor que la de las plantas compañeras.
+
+cantidadPistasCumplidas(Planta, Cantidad) :-
+    findall(Pista, (pista(Pista, Caracteristica), planta(Planta, Caracteristica)), Lista),
+    length(Lista, Cantidad).
+
+% Verifica si una planta atrae más visitas que su compañera
+atraeMasVisitas(Planta,Companera) :-
+    plantas_companeras(Planta, Companera),
+    cantidadPistasCumplidas(Planta, CantidadPlanta),
+    cantidadPistasCumplidas(Companera, CantidadCompanera),
+    CantidadPlanta > CantidadCompanera.
