@@ -13,17 +13,17 @@ pista(arbol_verde, altura(media)).
 %Test Punto 1:
 :- begin_tests(punto1).
 
-test(es_arbusto_verdadero):- es_arbusto(rose). %Prueba que "rose" sea un arbusto.
+test(es_arbusto_verdadero):- esArbusto(rose). %Prueba que "rose" sea un arbusto.
 
-test(es_arbusto_falso, fail):- es_arbusto(lily). %Prueba que "lily" no sea un arbusto.
+test(es_arbusto_falso, fail):- esArbusto(lily). %Prueba que "lily" no sea un arbusto.
 
 test(floracion_primavera):- 
-    florecen_en_primavera(rose),
-    florecen_en_primavera(tulip),
-    florecen_en_primavera(orchid). %Prueba que "rose", "tulip" y "orchid" florezcan en primavera.
+    florecenEnPrimavera(rose),
+    florecenEnPrimavera(tulip),
+    florecenEnPrimavera(orchid). %Prueba que "rose", "tulip" y "orchid" florezcan en primavera.
 
 test(floracion_primavera_falso, fail):- 
-    florecen_en_primavera(cactus). %Prueba que "cactus" no florezca en primavera.
+    florecenEnPrimavera(cactus). %Prueba que "cactus" no florezca en primavera.
 
 test(color_especifico_verdadero):- 
     colorEspecifico(rose, rojo). %Prueba que "rose" sea de color rojo.
@@ -43,23 +43,23 @@ test(riego_especial_falso, fail):-
     riegoEspecial(rose). %Prueba de que no florece en verano.
 
 test(atrae_insecto_rojo):- 
-    atrae_insectos_beneficos(rose). %Prueba que "rose" atrae insectos benéficos.
+    atraeInsectosBeneficiosos(rose). %Prueba que "rose" atrae insectos benéficos.
 
 test(atrae_insecto_amarillo):- 
-    atrae_insectos_beneficos(sunflower). %Prueba que "sunflower" atrae insectos benéficos.
-    atrae_insectos_beneficos(tulip). %Prueba que "tulip" atrae insectos benéficos.
+    atraeInsectosBeneficiosos(sunflower). %Prueba que "sunflower" atrae insectos benéficos.
+    atraeInsectosBeneficiosos(tulip). %Prueba que "tulip" atrae insectos benéficos.
 
 test(no_atrae_insectos, fail):- 
-    atrae_insectos_beneficos(fern). %Prueba que "fern" no atrae insectos benéficos.
+    atraeInsectosBeneficiosos(fern). %Prueba que "fern" no atrae insectos benéficos.
 
-test(consideradas_altas_correcto):-
-    consideradas_altas(cactus), %Prueba de que plantas, son consideradas altas.
-    consideradas_altas(bamboo),
-    consideradas_altas(fern),
-    consideradas_altas(ivy).
+test(consideradasAltas_correcto):-
+    consideradasAltas(cactus), %Prueba de que plantas, son consideradas altas.
+    consideradasAltas(bamboo),
+    consideradasAltas(fern),
+    consideradasAltas(ivy).
 
-test(consideradas_altas_falso, fail):- 
-    consideradas_altas(lily). %Prueba de que "lily" no es considerada alta.
+test(consideradasAltas_falso, fail):- 
+    consideradasAltas(lily). %Prueba de que "lily" no es considerada alta.
 :- end_tests(punto2).
 
 %Test Punto 3:
