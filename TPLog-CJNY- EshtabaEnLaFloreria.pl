@@ -94,7 +94,7 @@ pista(observacion5, color(verdes)).
 pista(observacion6, epoca(floracion,primavera)).
 pista(observacion7, tipo(suculenta)).
 pista(observacion8, altura(alta)).
-
+pista(observacion9, color(rojo)).
 
 cumplePistasDelObservador(Observacion, Planta):- 
     forall(pista(Observacion, Caracteristica), planta(Planta, Caracteristica)).
@@ -103,7 +103,7 @@ cumplePistasDelObservador(Observacion, Planta):-
 % 5.Finalmente, queremos saber si una planta está atrayendo más visitas que su compañera. Para ello, la cantidad de pistas que cumple
 % debe ser mayor que la de las plantas compañeras.
 
-cantidadPistasCumplidas(Planta, Cantidad) :-
+cantidadPistasCumplidas(Planta, Cantidad) :- 
     findall(Pista, (pista(Pista, Caracteristica), planta(Planta, Caracteristica)), Lista),
     length(Lista, Cantidad).
 

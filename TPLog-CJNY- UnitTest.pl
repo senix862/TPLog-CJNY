@@ -96,3 +96,17 @@ test(consideradas_altas_falso, fail):-
 
     test("Prueba para planta incorrecta: arbol_rojo", fail):- cumplePistasDelObservador(arbol_rojo, lily).
 :-end_tests(punto4).
+
+%Test Punto 5:
+:-begin_tests(punto5).
+
+test("Prueba para flor inexistente", fail):- atraeMasVisitas(florLoto,Companera).
+
+test("Prueba para flor inexistente", fail):- atraeMasVisitas(Planta,cala).
+
+test("Prueba para flores inexistentes", fail):- atraeMasVisitas(florLoto,cala).
+
+test("Prueba cantidad de pistas: 4"):- cantidadPistasCumplidas(rose, Cantidad).
+
+
+:-end_tests(punto5).
