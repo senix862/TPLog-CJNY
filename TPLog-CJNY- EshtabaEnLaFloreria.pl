@@ -96,7 +96,7 @@ pista(arbol_amarillo, epoca(floracion, primavera)).
 pista(arbol_amarillo, color(amarillo)).
 
 
-cumplePistasDelObservador(Observacion, Planta):- 
+cumplePistasDelObservador(Observacion, Planta):- planta(Planta,_), pista(observaciones,_),
     forall(pista(Observacion, Caracteristica), planta(Planta, Caracteristica)).
 
 
