@@ -83,21 +83,24 @@ cortasYtipoFlor(ConjuntoCortasYFlor):-
 cortasYtipoFlor(Planta):-planta(Planta, altura(corta)), planta(Planta,tipo(flor)).
 % 4.Ahora debemos agregar las pistas obtenidas durante las observaciones. Por ejemplo:
 % Queremos relacionar una planta y un observador solo si todas las pistas que tiene el observador son características de la planta. En este punto no se puede usar findall.
-
+%rose
 pista(arbol_rojo, tipo(arbusto)).
 pista(arbol_rojo, altura(media)).
 pista(arbol_rojo, color(rojo)).
+%lily
 pista(arbol_blanco, tipo(flor)).
 pista(arbol_blanco, color(blanco)).
-pista(arbol_blanco, epoca(floracion, verano)).
+%cactus
+pista(arbol_verde, epoca(floracion, verano)).
 pista(arbol_verde, color(verdes)).
 pista(arbol_verde, tipo(suculenta)).
+%tulip
 pista(arbol_amarillo, epoca(floracion, primavera)).
 pista(arbol_amarillo, color(amarillo)).
-pista(arbol_marron, color(marron)).
 
 
-cumplePistasDelObservador(Observacion, Planta):- planta(Planta,_), pista(observaciones,_),
+
+cumplePistasDelObservador(Observacion, Planta):- planta(Planta,_), pista(Observacion,_),
     forall(pista(Observacion, Caracteristica), planta(Planta, Caracteristica)).
 
 
