@@ -86,9 +86,9 @@ test(consideradasAltas_falso, fail):-
 
     test("Prueba para planta correcta: sunflower"):- cumplePistasDelObservador(arbol_amarillo, sunflower).
 
-    %test("Prueba inversible: rose"):- cumplePistasDelObservador(Observacion, rose).
+    test("Prueba inversible: rose"):- cumplePistasDelObservador(Observacion, rose).
 
-    %test("Prueba inversible: sunflower"):- cumplePistasDelObservador(Observacion, sunflower).
+    test("Prueba inversible: sunflower"):- cumplePistasDelObservador(Observacion, sunflower).
 
     test("Prueba para planta incorrecta: rose", fail):- cumplePistasDelObservador(arbol_inexistente, Planta).
 
@@ -108,5 +108,6 @@ test("Prueba para flores inexistentes", fail):- atraeMasVisitas(florLoto,cala).
 
 test("Prueba cantidad de pistas: 4"):- cantidadPistasCumplidas(rose, Cantidad).
 
+test("Prueba cantidad de pistas: 0"):- cantidadPistasCumplidas(cactus,Cantidad)
 
 :-end_tests(punto5).

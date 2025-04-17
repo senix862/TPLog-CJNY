@@ -94,6 +94,7 @@ pista(arbol_verde, color(verdes)).
 pista(arbol_verde, tipo(suculenta)).
 pista(arbol_amarillo, epoca(floracion, primavera)).
 pista(arbol_amarillo, color(amarillo)).
+pista(arbol_marron, color(marron)).
 
 
 cumplePistasDelObservador(Observacion, Planta):- planta(Planta,_), pista(observaciones,_),
