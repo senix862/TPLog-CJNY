@@ -8,7 +8,7 @@ pista(planta_amarillo, altura(alta)).
     % Prueba caracterísitca inexistente
 pista(arbol_inexistente, color(turquesa)).
     % Prueba flor inexistente
-pista(planta_verde, tipo(arbol)).
+pista(planta_verde, tipo(flor)).
 pista(planta_verde, altura(media)).
 
 %Test Punto 1:
