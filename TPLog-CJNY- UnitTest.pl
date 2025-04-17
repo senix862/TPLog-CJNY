@@ -1,5 +1,6 @@
 :- include('TPLog-CJNY- EshtabaEnLaFloreria.pl').
-%Pistas para el test Punto 4:
+%Pistas para el test Punto 4.
+%([!] Agregar pistas afecta el funcionamiento de cantidadPistasCumplidas. Revisar test punto5 si se cambia)
     % Prueba sunflower
 pista(planta_amarillo, color(amarillo)).
 pista(planta_amarillo, epoca(floracion, verano)).
@@ -7,8 +8,8 @@ pista(planta_amarillo, altura(alta)).
     % Prueba caracterísitca inexistente
 pista(arbol_inexistente, color(turquesa)).
     % Prueba flor inexistente
-pista(planta_verde, tipo(flor)).
-%pista(planta_verde, altura(media)).
+pista(planta_verde, tipo(arbol)).
+pista(planta_verde, altura(media)).
 
 %Test Punto 1:
 :- begin_tests(punto1).
@@ -46,7 +47,7 @@ test(atrae_insecto_rojo):-
     atraeInsectosBeneficiosos(rose). %Prueba que "rose" atrae insectos benéficos.
 
 test(atrae_insecto_amarillo):- 
-    atraeInsectosBeneficiosos(sunflower). %Prueba que "sunflower" atrae insectos benéficos.
+    atraeInsectosBeneficiosos(sunflower), %Prueba que "sunflower" atrae insectos benéficos.
     atraeInsectosBeneficiosos(tulip). %Prueba que "tulip" atrae insectos benéficos.
 
 test(no_atrae_insectos, fail):- 
@@ -109,6 +110,6 @@ test("Prueba para flores inexistentes", fail):- atraeMasVisitas(florLoto,cala).
 
 test("Prueba cantidad de pistas: 0", fail):- cantidadPistasCumplidas(cactus,0).
 
-test("Prueba cantidad de pistas: 4"):- cantidadPistasCumplidas(rose,Cantidad), assertion(Cantidad = 4).
+test("Prueba cantidad de pistas: 5"):- cantidadPistasCumplidas(rose, 5).
 
 :-end_tests(punto5).

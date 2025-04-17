@@ -62,16 +62,16 @@ plantas_companeras(rose, bamboo).
 % A partir de acá, crear las reglas para cumplir con los puntos pedidos en el tp.
 % 1.Queremos poder preguntar sobre nuestras plantas si: a. Son de tipo arbusto. b. Florecen en primavera. c. Tienen un color específico.
 
-esArbusto(Planta):-planta(Planta,tipo(arbusto)).
-florecenEnPrimavera(Planta):-planta(Planta,epoca(floracion,primavera)).
-colorEspecifico(Planta,Color):-planta(Planta,color(Color)).
+esArbusto(Planta):- planta(Planta,tipo(arbusto)).
+florecenEnPrimavera(Planta):- planta(Planta,epoca(floracion,primavera)).
+colorEspecifico(Planta,Color):- planta(Planta,color(Color)).
 
 % 2.Sabemos que: a. Las plantas que son arbustos y florecen en verano deben tener un sistema de riego especial.
 % b. Las plantas rojas o amarillas atraen más insectos benéficos. c. Las plantas que no son de tipo flor son consideradas altas.
-sistemaRiegoEspecial(Planta):- esArbusto(Planta),planta(Planta,epoca(floracion,verano)).
-atraeInsectosBeneficiosos(Planta):-colorEspecifico(Planta,rojo).
-atraeInsectosBeneficiosos(Planta):-colorEspecifico(Planta,amarillo).
-consideradasAltas(Planta):-planta(Planta,tipo(_)),not(planta(Planta,tipo(flor))).
+sistemaRiegoEspecial(Planta):- esArbusto(Planta),planta(Planta,epoca(floracion, verano)).
+atraeInsectosBeneficiosos(Planta):- colorEspecifico(Planta, rojo).
+atraeInsectosBeneficiosos(Planta):- colorEspecifico(Planta, amarillo).
+consideradasAltas(Planta):- planta(Planta, tipo(_)), not(planta(Planta, tipo(flor))).
 
 % Realizar el predicado que nos permita agregar este conocimiento y el punto 1 no deba modificarse.
 
