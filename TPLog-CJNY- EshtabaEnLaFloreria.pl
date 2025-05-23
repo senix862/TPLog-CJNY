@@ -68,19 +68,31 @@ colorEspecifico(Planta,Color):- planta(Planta,color(Color)).
 
 % 2.Sabemos que: a. Las plantas que son arbustos y florecen en verano deben tener un sistema de riego especial.
 % b. Las plantas rojas o amarillas atraen más insectos benéficos. c. Las plantas que no son de tipo flor son consideradas altas.
-sistemaRiegoEspecial(Planta):- esArbusto(Planta),planta(Planta,epoca(floracion, verano)).
-atraeInsectosBeneficiosos(Planta):- colorEspecifico(Planta, rojo).
-atraeInsectosBeneficiosos(Planta):- colorEspecifico(Planta, amarillo).
-consideradasAltas(Planta):- planta(Planta, tipo(_)), not(planta(Planta, tipo(flor))).
+%Realizar el predicado que nos permita agregar este conocimiento y el punto 1 no deba modificarse.
 
-% Realizar el predicado que nos permita agregar este conocimiento y el punto 1 no deba modificarse.
+:- discontiguous planta/2.
+
+planta(Planta,riego(especial)):- 
+    planta(Planta,tipo(arbusto)),
+    planta(Planta,epoca(floracion,verano)).
+
+planta(Planta,atraeInsectos(beneficioso)):-
+    planta(Planta,color(rojo)).
+
+planta(Planta,atraeInsectos(beneficioso)):-
+    planta(Planta,color(amarillo)).
+
+planta(Planta,consideradas(altas)):-
+    planta(Planta, tipo(_)),
+    not(planta(Planta, tipo(flor))).
+
 
 % 3.Se necesita conocer el conjunto de todas las plantas que son cortas y de tipo flor.
+
 cortasYtipoFlor(ConjuntoCortasYFlor):-
-    findall(Planta, 
-        (planta(Planta, altura(corta)), planta(Planta, tipo(flor))), 
-        ConjuntoCortasYFlor).
-cortasYtipoFlor(Planta):-planta(Planta, altura(corta)), planta(Planta,tipo(flor)).
+    findall(Planta,(planta(Planta, altura(corta)), planta(Planta, tipo(flor))),ConjuntoCortasYFlor).
+
+
 % 4.Ahora debemos agregar las pistas obtenidas durante las observaciones. Por ejemplo:
 % Queremos relacionar una planta y un observador solo si todas las pistas que tiene el observador son características de la planta. En este punto no se puede usar findall.
 %rose
