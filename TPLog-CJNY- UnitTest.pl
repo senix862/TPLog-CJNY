@@ -1,7 +1,7 @@
 % Trabajo práctico de Lógica - Jardín Botánico Virtual TESTS
 % Grupo: Caceres Catherine, Yanzon Brisa, Navarro Mario, Jalowicki Emiliano
 % Materia: Algoritmos y Programación II
-
+:- discontiguous pista/2.
 :- include('TPLog-CJNY- EshtabaEnLaFloreria.pl').
 % Pistas para el test Punto 4.
 pista(planta_amarillo, color(amarillo)).
@@ -16,26 +16,26 @@ pista(planta_verde, altura(media)).
 % Test Punto 1:
 :- begin_tests(punto1).
 
-test(es_arbusto_verdadero):- esArbusto(rose). % Prueba que "rose" sea un arbusto.
+test(es_arbusto_verdadero):- esArbusto(rose). 
 
-test(es_arbusto_falso, fail):- esArbusto(lily). % Prueba que "lily" no sea un arbusto.
+test(es_arbusto_falso, fail):- esArbusto(lily).
 
 test(floracion_primavera):- 
     florecenEnPrimavera(rose),
     florecenEnPrimavera(tulip),
-    florecenEnPrimavera(orchid). % Prueba que "rose", "tulip" y "orchid" florezcan en primavera.
+    florecenEnPrimavera(orchid). 
 
 test(floracion_primavera_falso, fail):- 
-    florecenEnPrimavera(cactus). % Prueba que "cactus" no florezca en primavera.
+    florecenEnPrimavera(cactus). 
 
 test(color_especifico_verdadero):- 
-    colorEspecifico(rose, rojo). % Prueba que "rose" sea de color rojo.
+    colorEspecifico(rose, rojo).
 
 test(color_especifico_verdadero):- 
-    colorEspecifico(tulip, amarillo). % Prueba que "tulip" sea de color amarillo.
+    colorEspecifico(tulip, amarillo). 
 
 test(color_especifico_falso, fail):- 
-    colorEspecifico(fern, rojo). % Prueba que "fern" no sea de color rojo.
+    colorEspecifico(fern, rojo).
 
 :- end_tests(punto1).
 
@@ -87,13 +87,17 @@ test("Prueba de que bamboo no está en el conjunto de plantas cortas y flor", fa
 
     test("Prueba para planta correcta: sunflower"):- cumplePistasDelObservador(planta_amarillo, sunflower).
 
-    test("Prueba inversible: rose"):- cumplePistasDelObservador(Observacion, rose).
+    test("Prueba inversible: rose"):-
+        cumplePistasDelObservador(Observacion, rose),
+        (Observacion == arbol_rojo).
 
-    test("Prueba inversible: sunflower"):- cumplePistasDelObservador(Observacion, sunflower).
+    test("Prueba inversible: sunflower"):-
+        cumplePistasDelObservador(Observacion, sunflower),
+        (Observacion == planta_amarillo).
 
-    test("Prueba para planta incorrecta: rose", fail):- cumplePistasDelObservador(arbol_inexistente, Planta).
+    test("Prueba para planta incorrecta: rose", fail):- cumplePistasDelObservador(arbol_inexistente,Planta).
 
-    test("Prueba para flor inexistente", fail):- cumplePistasDelObservador(planta_verde, Planta).
+    test("Prueba para flor inexistente", fail):- cumplePistasDelObservador(planta_verde,Planta).
 
     test("Prueba para planta incorrecta: arbol_rojo", fail):- cumplePistasDelObservador(arbol_rojo, lily).
 
