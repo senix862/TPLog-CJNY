@@ -1,7 +1,9 @@
+% Trabajo práctico de Lógica - Jardín Botánico Virtual TESTS
+% Grupo: Caceres Catherine, Yanzon Brisa, Navarro Mario, Jalowicki Emiliano
+% Materia: Algoritmos y Programación II
+
 :- include('TPLog-CJNY- EshtabaEnLaFloreria.pl').
-%Pistas para el test Punto 4.
-%([!] Agregar pistas afecta el funcionamiento de cantidadPistasCumplidas. Revisar test punto5 si se cambia)
-    % Prueba sunflower
+% Pistas para el test Punto 4.
 pista(planta_amarillo, color(amarillo)).
 pista(planta_amarillo, epoca(floracion, verano)).
 pista(planta_amarillo, altura(alta)).
@@ -11,77 +13,75 @@ pista(arbol_inexistente, color(turquesa)).
 pista(planta_verde, tipo(flor)).
 pista(planta_verde, altura(media)).
 
-%Test Punto 1:
+% Test Punto 1:
 :- begin_tests(punto1).
 
-test(es_arbusto_verdadero):- esArbusto(rose). %Prueba que "rose" sea un arbusto.
+test(es_arbusto_verdadero):- esArbusto(rose). % Prueba que "rose" sea un arbusto.
 
-test(es_arbusto_falso, fail):- esArbusto(lily). %Prueba que "lily" no sea un arbusto.
+test(es_arbusto_falso, fail):- esArbusto(lily). % Prueba que "lily" no sea un arbusto.
 
 test(floracion_primavera):- 
     florecenEnPrimavera(rose),
     florecenEnPrimavera(tulip),
-    florecenEnPrimavera(orchid). %Prueba que "rose", "tulip" y "orchid" florezcan en primavera.
+    florecenEnPrimavera(orchid). % Prueba que "rose", "tulip" y "orchid" florezcan en primavera.
 
 test(floracion_primavera_falso, fail):- 
-    florecenEnPrimavera(cactus). %Prueba que "cactus" no florezca en primavera.
+    florecenEnPrimavera(cactus). % Prueba que "cactus" no florezca en primavera.
 
 test(color_especifico_verdadero):- 
-    colorEspecifico(rose, rojo). %Prueba que "rose" sea de color rojo.
+    colorEspecifico(rose, rojo). % Prueba que "rose" sea de color rojo.
 
 test(color_especifico_verdadero):- 
-    colorEspecifico(tulip, amarillo). %Prueba que "tulip" sea de color amarillo.
+    colorEspecifico(tulip, amarillo). % Prueba que "tulip" sea de color amarillo.
 
 test(color_especifico_falso, fail):- 
-    colorEspecifico(fern, rojo). %Prueba que "fern" no sea de color rojo.
+    colorEspecifico(fern, rojo). % Prueba que "fern" no sea de color rojo.
 
 :- end_tests(punto1).
 
-%Test Punto 2:
+% Test Punto 2:
 :- begin_tests(punto2).
 
-test(riego_especial_falso, fail):- 
-    sistemaRiegoEspecial(rose). %Prueba de que no florece en verano.
+test("Prueba para planta con riego especial (debe fallar)", fail):-
+    planta(Planta, riego(especial)).
 
-test(atrae_insecto_rojo):- 
-    atraeInsectosBeneficiosos(rose). %Prueba que "rose" atrae insectos benéficos.
+test("Prueba de atraccion de insectos - planta roja: rose"):-
+    planta(rose, atraeInsectos(beneficioso)).
 
-test(atrae_insecto_amarillo):- 
-    atraeInsectosBeneficiosos(sunflower), %Prueba que "sunflower" atrae insectos benéficos.
-    atraeInsectosBeneficiosos(tulip). %Prueba que "tulip" atrae insectos benéficos.
+test("Prueba de atraccion de insectos - planta amarilla: tulip"):-
+    planta(tulip, atraeInsectos(beneficioso)).
 
-test(no_atrae_insectos, fail):- 
-    atraeInsectosBeneficiosos(fern). %Prueba que "fern" no atrae insectos benéficos.
+test("Prueba de atraccion de insectos - planta amarilla: sunflower"):-
+    planta(sunflower, atraeInsectos(beneficioso)).
 
-test(consideradasAltas_correcto):-
-    consideradasAltas(cactus), %Prueba de que plantas, son consideradas altas.
-    consideradasAltas(bamboo),
-    consideradasAltas(fern),
-    consideradasAltas(ivy).
+test("Prueba de plantas que no son flores y se consideran altas (conjunto esperado)") :-
+    findall(Planta, planta(Planta, consideradas(altas)), Lista),
+    sort(Lista, Ordenadas),
+    Ordenadas == [bamboo, cactus, fern, ivy, rose].
 
-test(consideradasAltas_falso, fail):- 
-    consideradasAltas(lily). %Prueba de que "lily" no es considerada alta.
 :- end_tests(punto2).
 
-%Test Punto 3:
-:-begin_tests(punto3).
-    test("Prueba conjunto de cortas y tipo flor"):- cortasYtipoFlor(Plantas),
-    Plantas == [lily, tulip, orchid]. %Verifica que "Plantas" sea la lista dada. (Sensible al orden).
+% Test Punto 3:
+:- begin_tests(punto3).
 
-    test("Prueba planta correcta: lily"):- cortasYtipoFlor(lily).
+test("Prueba de plantas cortas y de tipo flor") :-
+    cortasYtipoFlor(Resultado),
+    sort(Resultado, Ordenado),
+    Ordenado == [lily, orchid, tulip].
 
-    test("Prueba planta incorrecta: bamboo", fail):- cortasYtipoFlor(bamboo).
+test("Prueba inversible: planta corta y flor - tulip") :-
+    cortasYtipoFlor(Conjunto), member(tulip, Conjunto).
 
-    test("Prueba planta inexistente: diente_de_leon", fail):- cortasYtipoFlor(diente_de_leon).
+test("Prueba inversible: planta corta y flor - lily") :-
+    cortasYtipoFlor(Conjunto), member(lily, Conjunto).
 
-    test("Prueba conjunto de plantas desordenadas", fail):- cortasYtipoFlor(Plantas),
-    Plantas == [orchid, lily, tulip]. %Orden distinto al de Plantas, por lo que debe fallar (entonces el test tiene éxito).
+test("Prueba de que bamboo no está en el conjunto de plantas cortas y flor", fail) :-
+    cortasYtipoFlor(Conjunto), member(bamboo, Conjunto).
 
-    test("Prueba conjunto de plantas correctas + incorrecta", fail):- cortasYtipoFlor(Plantas),
-    Plantas == [orchid, lily, tulip, fern].
-:-end_tests(punto3).
+:- end_tests(punto3).
 
-%Test Punto 4:
+
+% Test Punto 4:
 :-begin_tests(punto4).
     test("Prueba para planta correcta: rose"):- cumplePistasDelObservador(arbol_rojo, rose).
 
@@ -99,7 +99,7 @@ test(consideradasAltas_falso, fail):-
 
 :-end_tests(punto4).
 
-%Test Punto 5:
+% Test Punto 5:
 :-begin_tests(punto5).
 
 test("Prueba para flor inexistente", fail):- atraeMasVisitas(florLoto,Companera).

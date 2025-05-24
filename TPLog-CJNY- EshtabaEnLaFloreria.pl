@@ -1,3 +1,7 @@
+% Trabajo práctico de Lógica - Jardín Botánico Virtual
+% Grupo: Caceres Catherine, Yanzon Brisa, Navarro Mario, Jalowicki Emiliano
+% Materia: Algoritmos y Programación II
+
 %Base de conocimiento
 
 % Hechos de plantas y sus características -> planta(Nombre, Caracteristica).
@@ -58,8 +62,6 @@ plantas_companeras(ivy, orchid).
 plantas_companeras(bamboo, rose).
 plantas_companeras(rose, bamboo).
 
-
-% A partir de acá, crear las reglas para cumplir con los puntos pedidos en el tp.
 % 1.Queremos poder preguntar sobre nuestras plantas si: a. Son de tipo arbusto. b. Florecen en primavera. c. Tienen un color específico.
 
 esArbusto(Planta):- planta(Planta,tipo(arbusto)).
@@ -109,7 +111,6 @@ pista(arbol_verde, tipo(suculenta)).
 %tulip
 pista(arbol_amarillo, epoca(floracion, primavera)).
 pista(arbol_amarillo, color(amarillo)).
-
 
 
 cumplePistasDelObservador(Observacion, Planta):- planta(Planta,_), pista(Observacion,_),
